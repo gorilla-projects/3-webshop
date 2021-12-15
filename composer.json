@@ -1,0 +1,13 @@
+{
+    "name": "toby/3-webshop",
+    "description": "Webshop refactored from VueJS",
+    "authors": [
+        {
+            "name": "Toby Versteeg",
+            "email": "toby@codegorilla.nl"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
+}
