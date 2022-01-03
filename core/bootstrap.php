@@ -12,3 +12,4 @@ if (!empty($page) && file_exists('controllers/' . $page . '.php')) {
     // Call function in controller
     $action($page);
 }
+
