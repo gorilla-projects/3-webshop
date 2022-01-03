@@ -5,17 +5,23 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require 'vendor/autoload.php';
+
+// .env configuration
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 // Starting a server PHP session
 session_start();
 
-require 'core/config.php';
+// Include core modules
 require 'core/mysql.php';
 require 'core/core.php';
 
 // Throw all errors to a central error handler function
 // This function is in core/core.php file
 set_exception_handler('exception_handler');
-
+// dd(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 if (!isAjax()) {
     // Load the HTML <head> section
     require 'assets/views/layouts/head.view.php';

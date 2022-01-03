@@ -19,11 +19,11 @@
     <script src="node_modules/vue/dist/vue.min.js"></script>
     <script src="node_modules/axios/dist/axios.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-
-    <script src="/assets/js/fruits.js"></script>
+    
     <script src="/assets/js/components/form.js"></script>
     <script src="/assets/js/components/product.js"></script>
 </head>
 <body>
     <main id="app" class="content">
         <div class="container-fluid p-0">
+            <?php ?>
