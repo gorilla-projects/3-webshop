@@ -1,6 +1,7 @@
 {
     "name": "toby/3-webshop",
-    "description": "Webshop refactored from VueJS",
+    "description": "My PHP frameworl",
+    "type": "project",
     "authors": [
         {
             "name": "Toby Versteeg",
@@ -8,6 +9,6 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.4"
     }
 }

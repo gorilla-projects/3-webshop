@@ -1,5 +1,9 @@
 <?php
 
-$fruits = 'Apples';
+require 'core/core.php';
 
-dd($fruits, $vars, $morevars);
+$name = 'Toby';
+
+$fruits = new stdClass();
+
+dd($fruits);
