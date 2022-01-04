@@ -18,8 +18,11 @@ function saveCard()
 
 function getData()
 {
+    $sql = "SELECT * FROM `products` WHERE `deleted_at` IS NULL";
+    $res = query($sql);
+
     echo json_encode([
         'success'   => true,
-        'fruits'    => require 'data/fruits.php',
+        'fruits'    => $res->fetchAll(PDO::FETCH_ASSOC),
     ]);
 }

@@ -8,13 +8,13 @@ var app = new Vue({
     el: '#app',
     data: {
         appName: 'The Fruit Bowl',
-        products: [],
+        cart: '',
         axiosInstance: '',
     },
 
     mounted() {
         this.$on('add-to-cart', (id) => {
-            this.products.push(id)
+            this.updateCart(id)
         })
 
         this.$on('save-cart', () => {
@@ -22,9 +22,54 @@ var app = new Vue({
         })
     },
 
+    created() {
+        if (localStorage.getItem('cart') === null) {
+            this.cart = {
+                products: [],
+                totalProducts: 0,
+                totalPrice: 0,
+            }
+
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        }
+
+        this.cart = JSON.parse(localStorage.getItem('cart'));
+    },
+
     methods: {
         updateCart(id) {
-            this.products.push(id)
+            let foundIndex = false;
+
+            this.cart.products.forEach(function(product, index) {
+                if (product.id == id) {
+                    foundIndex = index;
+                }
+            });
+
+            if (foundIndex === false) {
+                this.cart.products.push({
+                    id: id,
+                    amount: 1,
+                });
+            } else {
+                this.cart.products[foundIndex].amount++;
+            }
+
+            this.cart.totalProducts++;
+
+            localStorage.setItem('cart', JSON.stringify(this.cart))
+        },
+
+        showCart() {
+            $('.layer').fadeIn();
+
+            $('.cart').toggle({
+                direction: 'right',
+            });
+        },
+
+        fadeOutShoppingCart() {
+            this.$refs.cartComponent.closeShoppingCart();
         },
 
         saveToBackEnd() {
