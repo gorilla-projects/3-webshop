@@ -26,4 +26,4 @@
 <body>
     <main id="app" class="content">
         <div class="container-fluid p-0">
-            <?php ?>
+            
