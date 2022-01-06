@@ -37,48 +37,68 @@ var app = new Vue({
     },
 
     methods: {
-        updateCart(id) {
+        updateCart(article) {
             let foundIndex = false;
 
             this.cart.products.forEach(function(product, index) {
-                if (product.id == id) {
+                if (product.id == article.id) {
                     foundIndex = index;
                 }
             });
 
             if (foundIndex === false) {
                 this.cart.products.push({
-                    id: id,
+                    id: article.id,
+                    cost: article.cost,
+                    name: article.name,
+                    image: article.image,
                     amount: 1,
                 });
             } else {
                 this.cart.products[foundIndex].amount++;
             }
 
-            this.cart.totalProducts++;
+            this.cart.totalProducts = this.totalProducts();
+            this.cart.totalPrice = this.totalPrice();
 
             localStorage.setItem('cart', JSON.stringify(this.cart))
         },
 
-        showCart() {
-            $('.layer').fadeIn();
+        totalPrice() {
+            let totalPrice = 0;
 
-            $('.cart').toggle({
-                direction: 'right',
+            this.cart.products.forEach(article => {
+                totalPrice += (article.amount * article.cost);
             });
+
+            return totalPrice;
         },
 
-        fadeOutShoppingCart() {
+        totalProducts() {
+            let totalProducts = 0;
+
+            this.cart.products.forEach(article => {
+                totalProducts += article.amount;
+            });
+
+            return totalProducts;
+        },
+
+        showShoppingCart() {
+            this.$refs.cartComponent.showShoppingCart();
+        },
+
+        closeShoppingCart() {
             this.$refs.cartComponent.closeShoppingCart();
         },
 
         saveToBackEnd() {
             let form = new FormData
 
-            form.append('products', JSON.stringify(this.products))
+            form.append('cart', JSON.stringify(this.cart))
             
             // Header must be set to tell back-end that this is an Ajax call
-            axios.post('?page=home&action=savecard', form, {
+            axios.post('?page=checkout&action=savecard', form, {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 }
@@ -88,7 +108,11 @@ var app = new Vue({
 
             })
         },
-    }
+
+        updateStock() {
+            
+        },
+    },    
 })
 
 Vue.config.devtools = true

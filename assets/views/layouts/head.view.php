@@ -1,3 +1,4 @@
+<!-- HEAD VIEW PHP -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +27,6 @@
 </head>
 <body>    
     <main id="app" class="content">
-        <div class="layer" @click="fadeOutShoppingCart"></div>
+        <div class="layer" @click="closeShoppingCart"></div>
         <div class="container-fluid p-0">
             

@@ -1,6 +1,6 @@
 Vue.component('products', {
     props: {
-        
+
     },
 
     data: function () {
@@ -17,7 +17,7 @@ Vue.component('products', {
         addToCart(fruit) {
             fruit.stock--;
 
-            this.$root.$emit('add-to-cart', fruit.id);
+            this.$root.$emit('add-to-cart', fruit);
         },
 
         getProducts() {
@@ -29,9 +29,11 @@ Vue.component('products', {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 }
-            }).then(function(response) {
-                self.fruits = response.data.fruits;
-            }).catch(function(error) {
+            }).then(function (response) {
+                if (response.data.success) {
+                    self.fruits = response.data.fruits;
+                }
+            }).catch(function (error) {
 
             });
         },

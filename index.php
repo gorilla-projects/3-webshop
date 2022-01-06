@@ -25,9 +25,9 @@ set_exception_handler('exception_handler');
 if (!isAjax()) {
     // Load the HTML <head> section
     require 'assets/views/layouts/head.view.php';
-
-    $content = [];
    
+    $content = [];
+
     require 'assets/views/header.view.php';
 
     // Inject code from controller

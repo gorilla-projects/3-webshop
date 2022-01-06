@@ -1,3 +1,4 @@
+<!-- HEADER VIEW PHP -->
 <header class="header">
     <div class="row">
         <div class="col-md-3"></div>
@@ -7,7 +8,7 @@
         </div>
 
         <div class="col-md-3 text-end pe-5 mt-5">
-            <i class="bi bi-cart4 fs-5 cart-icon" @click="showCart"></i>
+            <i class="bi bi-cart4 fs-5 cart-icon" @click="showShoppingCart"></i>
         </div>
     </div>
 
