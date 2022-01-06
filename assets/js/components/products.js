@@ -1,6 +1,6 @@
 Vue.component('products', {
     props: {
-        
+
     },
 
     data: function () {
@@ -14,8 +14,10 @@ Vue.component('products', {
     },
 
     methods: {
-        addToCart(id) {
-            this.$root.$emit('add-to-cart', id)
+        addToCart(fruit) {
+            fruit.stock--;
+
+            this.$root.$emit('add-to-cart', fruit);
         },
 
         getProducts() {
@@ -27,9 +29,11 @@ Vue.component('products', {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 }
-            }).then(function(response) {
-                self.fruits = response.data.fruits;
-            }).catch(function(error) {
+            }).then(function (response) {
+                if (response.data.success) {
+                    self.fruits = response.data.fruits;
+                }
+            }).catch(function (error) {
 
             });
         },
@@ -44,7 +48,7 @@ Vue.component('products', {
                         <h5 class="card-title">{{ fruit.name }}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <p>Stock: {{ fruit.stock }}</p>
-                        <input type="button" class="btn btn-primary" :disabled="fruit.stock === 0" @click="addToCart(fruit.id)" value="Order">
+                        <input type="button" class="btn btn-primary" :disabled="fruit.stock === 0" @click="addToCart(fruit)" value="Order">
                     </div>
                 </div>
             </div>

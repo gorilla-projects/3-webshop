@@ -1,5 +1,4 @@
 <div class="container">
-    <cart-form>
-        <products></products>
-    </cart-form>
+    <cart-form ref="cartComponent" class="cart"></cart-form>
+    <products></products>
 </div>

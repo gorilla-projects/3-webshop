@@ -9,9 +9,6 @@ body {
     background-color: #9eafb7;
     width: 100%;
     color: white;
-    background: url('../images/webshop/strawberries.jpg') no-repeat;
-    background-size: cover;
-    opacity: 0.9;
 }
 
 .content {
@@ -28,4 +25,20 @@ body {
     background-color: black;
     width: 100%;
     color: white;
+}
+
+.cart-icon {
+    cursor: pointer;
+}
+
+.layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    display: none;
+    z-index: 1000;
 }

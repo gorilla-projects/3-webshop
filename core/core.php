@@ -18,7 +18,7 @@ function dd()
         }
 
         echo "</pre>";
-
+        
         die();
     }
 }

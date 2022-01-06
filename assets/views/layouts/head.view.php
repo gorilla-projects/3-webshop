@@ -1,3 +1,4 @@
+<!-- HEAD VIEW PHP -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,17 +14,19 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/cart.css">
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/vue/dist/vue.min.js"></script>
     <script src="node_modules/axios/dist/axios.min.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     
-    <script src="/assets/js/components/form.js"></script>
-    <script src="/assets/js/components/product.js"></script>
+    <script src="/assets/js/components/cart.js"></script>
+    <script src="/assets/js/components/products.js"></script>
 </head>
-<body>
+<body>    
     <main id="app" class="content">
+        <div class="layer" @click="closeShoppingCart"></div>
         <div class="container-fluid p-0">
             
