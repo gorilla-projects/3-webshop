@@ -4,13 +4,17 @@
 $page = getPage();
 
 // Get action from URL
-$action = getAction();
+$function = getFunction();
 
-// dd($page, $action);
+// dd("page = " . $page, "function = " . $function);
+
+// M = Model (data)
+// V = View (html)
+// C = Controller (php)
 
 if (!empty($page) && file_exists('controllers/' . $page . '.php')) {
     require_once 'controllers/' . $page . '.php';
 
     // Call function in controller
-    $action($page);
+    $function($page);
 }

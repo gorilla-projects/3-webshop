@@ -12,17 +12,31 @@ function getData()
     $sql = "SELECT * FROM `products` WHERE `deleted_at` IS NULL";
     $res = query($sql);
 
-    $fruits = $res->fetchAll(PDO::FETCH_CLASS);
+    $shoppingCart = array_key_exists('cart', $_SESSION) ? json_decode($_SESSION['cart']) : [];
 
-    // if (array_key_exists('cart', $_SESSION)) {
-    //     $shoppingCart = json_decode($_SESSION['cart']);
-    //     if (count($shoppingCart->products)) {
-    //         foreach (@$shoppingCart as $cart) {
-    //             $sql = "SELECT `stock` FROM `products` WHERE `id`=" . $cart['id'] . " AND `deleted_at`";
-    //             $fruit = $res->fetch(PDO::FETCH_ASSOC);
-    //         }
-    //     }
-    // }
+    $fruits = [];
+
+    $index = 0;
+
+    while ($fruit = $res->fetch(PDO::FETCH_ASSOC)) {
+        $fruits[$index] = $fruit;
+        $fruits[$index]['price'] = (float)$fruit['price'];
+        $fruits[$index]['stock'] = (int)$fruit['stock'];
+
+        if (count($shoppingCart)) {
+            foreach ($shoppingCart as $key => $product) {
+                dd($fruit, $product);
+                
+                if ($fruit['id'] === $product['id']) {
+                    // $fruits[$key][''];
+                }
+            }
+        }
+
+        $index++;
+    }
+
+    // dd($fruits);
 
     echo json_encode([
         'success'   => true,
