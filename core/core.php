@@ -85,7 +85,7 @@ function getPage()
     return array_key_exists('page', $_GET) ? $_GET['page'] : 'home';
 }
 
-function getAction()
+function getFunction()
 {
     return array_key_exists('action', $_GET) ? $_GET['action'] : 'index';
 }
