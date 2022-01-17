@@ -25,6 +25,7 @@
     <script src="/assets/js/components/cart.js"></script>
     <script src="/assets/js/components/products.js"></script>
 </head>
+
 <body>    
     <main id="app" class="content">
         <div class="layer" @click="closeShoppingCart"></div>

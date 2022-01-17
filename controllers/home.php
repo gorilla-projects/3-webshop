@@ -44,3 +44,8 @@ function getData()
         'what'      => 'kiekeboo!',
     ]);
 }
+
+function registerSuccessful()
+{
+    return require $_SERVER['DOCUMENT_ROOT'] . '/assets/views/register-succful.view.php';
+}

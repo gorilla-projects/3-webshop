@@ -13,3 +13,17 @@ function saveCard()
         'redirect'  => '',
     ]);
 }
+
+function show() {
+    $checkout = [
+        'aantal' => 10,
+        'name'  => 'Toby',
+    ];
+
+    return require $_SERVER['DOCUMENT_ROOT'] . '/assets/views/cart.view.php';
+}
+
+function kiekeboo()
+{
+    dd('kiekeboo');
+}
