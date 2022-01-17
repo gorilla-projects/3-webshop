@@ -85,7 +85,8 @@ var app = new Vue({
         },
 
         showShoppingCart() {
-            this.$refs.cartComponent.showShoppingCart();
+            // this.$refs.cartComponent.showShoppingCart();
+            window.location.href = "?page=checkout&function=kiekeboo";
         },
 
         closeShoppingCart() {
