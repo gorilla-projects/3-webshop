@@ -9,39 +9,25 @@ function index($view)
 
 function getData()
 {
-    $sql = "SELECT * FROM `products` WHERE `deleted_at` IS NULL";
-    $res = query($sql);
+    try {
+        $query = "SELECT * FROM `products` WHERE `deleted_at` IS NULL";
+        $result = query($query);
+        
+        $products = $result->fetchAll(PDO::FETCH_ASSOC);
 
-    $shoppingCart = array_key_exists('cart', $_SESSION) ? json_decode($_SESSION['cart']) : [];
-
-    $fruits = [];
-
-    $index = 0;
-
-    while ($fruit = $res->fetch(PDO::FETCH_ASSOC)) {
-        $fruits[$index] = $fruit;
-        $fruits[$index]['price'] = (float)$fruit['price'];
-        $fruits[$index]['stock'] = (int)$fruit['stock'];
-
-        if (count($shoppingCart)) {
-            foreach ($shoppingCart as $key => $product) {
-                dd($fruit, $product);
-                
-                if ($fruit['id'] === $product['id']) {
-                    // $fruits[$key][''];
-                }
-            }
-        }
-
-        $index++;
+        $success = true;
+        $message = "Success";
+        
+    } catch (Exception $e) {
+        $products = null;
+        $success = false;
+        $message = $e->getMessage();
     }
 
-    // dd($fruits);
-
     echo json_encode([
-        'success'   => true,
-        'fruits'    => $fruits,
-        'what'      => 'kiekeboo!',
+        'success'   => $success,
+        'message'   => $message,
+        'products'  => $products,
     ]);
 }
 
