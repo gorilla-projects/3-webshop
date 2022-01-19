@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-md-3 text-end pe-5 mt-5">
-            <i class="bi bi-cart4 fs-5 cart-icon" @click="showShoppingCart"></i>
+            <shopping-cart ref="shoppingCart"></shopping-cart>
         </div>
     </div>
 

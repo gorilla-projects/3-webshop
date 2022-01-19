@@ -1,62 +1,49 @@
-Vue.component('cart-form', {
+Vue.component('shopping-cart', {
     data: function () {
         return {
-            cart: null,
+            cart: window.localStorage.getItem('cart') !== null ? JSON.parse(window.localStorage.getItem('cart')) : {},
         }
     },
 
     props: {
-        method: {
-            default: 'POST',
-        }
-    },
-
-    mounted() {
-
-    },
-
-    created() {
-        this.cart = this.$parent.cart;
+        
     },
 
     methods: {
-        showShoppingCart() {
-            $('.layer').fadeIn();
-
-            $('.cart').toggle({
-                direction: 'right',
-            });
-
-            // axios({ })
-        },
-
-        closeShoppingCart() {
-            $('.layer').fadeOut();
+        closeCart() {
+            $('.layer').fadeOut(); 
             $('.cart').fadeOut();
         },
 
-        checkout() {
-            this.$root.$emit('save-cart');
+        showCart() {
+            $('.layer').fadeIn();
+            $('.cart').toggle({
+                direction: 'right',
+            });
         },
     },
 
     template: `
-        <section>
-            <button @click="closeShoppingCart">Close cart</button>
-            <div class="row p-2 mb-2" v-for="product in cart.products">
-                <div class="col-md-4">
-                    <img :src="'/assets/images/webshop/' + product.image" width="50">
+        <div>
+            <i @click="showCart" class="btn btn-light bi bi-basket"></i>
+            <div class="cart p-3">
+                <div class="row mb-3" v-for="item in cart.items">
+                    <div class="col-md-4">
+                        <img :src="'/assets/images/webshop/' + item.image" width="100%">
+                    </div>
+                    <div class="col-md-3">{{ item.name }}</div>
+                    <div class="col-md-1">{{ item.amount }}</div>
+                    <div class="col-md-2">{{ item.price }}</div>
+                    <div class="col-md-2">{{ item.totalPrice }}</div>
                 </div>
-                <div class="col-md-2">{{ product.amount }}</div>
-                <div class="col-md-3 text-end">{{ product.cost }}</div>
-                <div class="col-md-3" text-end>{{ product.cost * product.amount }}</div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-12 mt-3">
-                    <button @click="checkout">Checkout</button>
+                <div class="row mt-3">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">Total</div>
+                    <div class="col-md-1">{{ cart.totalItems }}</div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">{{ cart.totalPrice }}</div>
                 </div>
             </div>
-        </section>
-    `,
+        </div>`,
 })

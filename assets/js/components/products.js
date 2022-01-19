@@ -1,54 +1,49 @@
 Vue.component('products', {
-    props: {
-
-    },
-
     data: function () {
         return {
-            fruits: [],
+            products: [],
         }
     },
 
-    created() {
-        this.getProducts();
+    props: {
+        
     },
 
     methods: {
-        addToCart(fruit) {
-            fruit.stock--;
+        addToCart(product) {
+            product.stock--;
 
-            this.$root.$emit('add-to-cart', fruit);
+            this.$root.$emit('add-to-cart', product);
         },
+    },
 
-        getProducts() {
-            let self = this;
+    created() {
+        let self = this;
 
-            axios({
-                method: 'GET',
-                url: '?page=home&action=getdata',
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            }).then(function (response) {
-                if (response.data.success) {
-                    self.fruits = response.data.fruits;
-                }
-            }).catch(function (error) {
+        // Get all products calling function in controller (Ajax call)
+        axios({
+            method: 'GET',
+            url: '?page=home&function=getdata',
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        }).then(function(response) {
+            self.products = response.data.products;
+        }).catch(function(response) {
 
-            });
-        },
+        })
     },
 
     template: `
         <div class="row">
-            <div class="col-md-4 pt-3" v-for="fruit in fruits">
+            <div class="col-md-4 pt-3" v-for="product in products">
                 <div class="card">
-                    <img :src="'/assets/images/webshop/' + fruit.image" class="card-img-top" alt="...">
+                    <img :src="'/assets/images/webshop/' + product.image" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{ fruit.name }}</h5>
+                        <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <p>Stock: {{ fruit.stock }}</p>
-                        <input type="button" class="btn btn-primary" :disabled="fruit.stock === 0" @click="addToCart(fruit)" value="Order">
+                        <p>Stock: {{ product.stock }}</p>
+                        <input type="button" class="btn btn-primary" :disabled="product.stock === 0" @click="addToCart(product)" value="Order">
                     </div>
                 </div>
             </div>

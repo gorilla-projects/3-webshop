@@ -11,5 +11,7 @@ function login()
     $result = query($query);
     $data = $result->fetch(PDO::FETCH_ASSOC);
 
+    dd($data);
+
     dd($_POST['password'], password_verify($_POST['password'], $data['password']));
 }
